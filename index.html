@@ -3,17 +3,39 @@
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0"">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
   <title>Document</title>
   <script>
+      function get_value() {
+        document.getElementById("result").innerHTML = document.getElementById("teams").value
+    }
     function getRandomInt() {
-	    r= Math.floor(Math.random() *7)+1;
-      document.getElementById("randomResult").innerHTML= r;
+      team_check = document.getElementById("teams").value;
+      if (team_check == 0){
+        document.getElementById("randomResult").innerHTML="請選擇組別";
+      }
+      else{
+        document.getElementById("randomResult").innerHTML=team_check;
+        r= Math.floor(Math.random() *7)+1;
+        document.getElementById("randomResult").innerHTML= r;
+      }
     }
   </script>
 </head>
+<form >
+  <select id="teams" name="teamlist" onchange="get_value()">
+    <option value="0">---請選擇你的組別---</option>
+    <option value="1">第一組</option>
+    <option value="2">第二組</option>
+    <option value="3">第三組</option>
+    <option value="4">第四組</option>
+    <option value="5">第五組</option>
+  </select>
+</form>
+</br>
 <body>
   <button onclick="getRandomInt()">test</button>
   <p id="randomResult"></p>
+
 </body>
 </html>
