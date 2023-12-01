@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script>
+    function getRandomInt() {
+	    r= Math.floor(Math.random() *7)+1;
+      document.getElementById("randomResult").innerHTML= r;
+    }
+  </script>
+</head>
+<body>
+  <button onclick="getRandomInt()">test</button>
+  <p id="randomResult"></p>
+</body>
+</html>
