@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport"
+    content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+  <title>抽籤</title>
+  <style>
+    body {
+      text-align: center;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="text_view">
+    <button id="update">抽籤</button>
+    <p id="randomResult"></p>
+  </div>
+  <script>
+    var teamlist = [];
+    function getRange() {
+      r = Math.floor(Math.random() * 7) + 1;
+
+      if (!teamlist.includes(r) && teamlist.length != 7) {
+        teamlist += r;
+        return r
+      }
+      else{
+        return null
+      }
+    }
+  </script>
+  <script type="module">
+    // Import the functions you need from the SDKs you need
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.0/firebase-app.js";
+    // TODO: Add SDKs for Firebase products that you want to use
+    // https://firebase.google.com/docs/web/setup#available-libraries
+
+    // Your web app's Firebase configuration
+    const firebaseConfig = {
+      apiKey: "AIzaSyDTG1dZj-ouAr-zWUre8xuSqet5Qz08olI",
+      authDomain: "fir-12fb1.firebaseapp.com",
+      databaseURL: "https://fir-12fb1-default-rtdb.asia-southeast1.firebasedatabase.app",
+      projectId: "fir-12fb1",
+      storageBucket: "fir-12fb1.appspot.com",
+      messagingSenderId: "77087316054",
+      appId: "1:77087316054:web:12549ca211b6fe0f7f03f7"
+    };
+
+    // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+
+    import { getDatabase, ref, get, set, child, update, remove } from "https://www.gstatic.com/firebasejs/10.7.0/firebase-database.js";
+
+    const db = getDatabase();
+
+    var teams = document.querySelector("#teams");
+    var updateBtn = document.querySelector("#update");
+
+    function InsertData() {
+      if (getRange() != null) {
+        document.getElementById("randomResult").innerHTML = teamlist;
+        set(ref(db, "神農街" + teamlist.length), {
+          ID: r,
+          Times: teamlist.length
+        })
+          // .then(() => {
+          //   alert("Data added successfully");
+          // })
+          // .catch((error) => {
+          //   alert(error);
+          // });
+
+      }
+      else {
+        if (teamlist.length ==7){
+          document.getElementById("randomResult").innerHTML = "做完任務了嗎?做完了請回原點";
+        }else{
+          document.getElementById("randomResult").innerHTML = "請重新抽一遍";
+        }
+        
+      }
+
+    }
+    updateBtn.addEventListener('click', InsertData);
+
+  </script>
+
+</body>
+
+</html>
