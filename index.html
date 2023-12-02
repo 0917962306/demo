@@ -1,28 +1,28 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
 </head>
+<style>
+  body {
+    text-align: center;
+  }
+</style>
 <script>
-  function change(){
-    location.replace(teams.value+".html");
+  function change() {
+    var obj = input.value;
+    var url = '1.html?obj=' + obj;
+    url = encodeURI(url);
+    window.open(url, "", "");
   }
 </script>
+
 <body>
-  <div id="teans_change">
-    <select id="teams" name="teamlist" onchange="change()">
-      <option value="0">---請選擇你的組別---</option>
-      <option value="1">第一組</option>
-      <option value="2">第二組</option>
-      <option value="3">第三組</option>
-      <option value="4">第四組</option>
-      <option value="5">第五組</option>
-    </select>
-    </br>
-    </br>
-    <p id="a"></p>
-  </div>
+  <input id="input" type="text" placeholder="請輸入你們的組別"></input>
+  <button onclick="change()">傳送</button>
 </body>
+
 </html>

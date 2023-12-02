@@ -62,10 +62,13 @@
 
     function InsertData() {
       if (getRange() != null) {
-        document.getElementById("randomResult").innerHTML = teamlist;
-        set(ref(db, "神農街" + teamlist.length), {
-          ID: r,
-          Times: teamlist.length
+        var url = decodeURI(window.location.href);
+        var argsIndex = url .split("?obj=");
+        var arg = argsIndex[1];
+        document.getElementById("randomResult").innerHTML = r;
+        set(ref(db, arg+teamlist.length), {
+          ID: arg,
+          Times: r
         })
           // .then(() => {
           //   alert("Data added successfully");
