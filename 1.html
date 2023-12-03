@@ -17,6 +17,8 @@
 <body>
   <div id="text_view">
     <button id="update">抽籤</button>
+    <button id="confirm" style="display:none;">確認</button>
+    <button id="reroll" style="display:none;">重新抽籤</button>
     <p id="randomResult"></p>
   </div>
   <script>
@@ -25,7 +27,6 @@
       r = Math.floor(Math.random() * 7) + 1;
 
       if (!teamlist.includes(r) && teamlist.length != 7) {
-        teamlist += r;
         return r
       }
       else{
@@ -34,6 +35,8 @@
     }
   </script>
   <script type="module">
+      const confirmBtn = document.getElementById("confirm");
+      const rerollBtn = document.getElementById("reroll");
     // Import the functions you need from the SDKs you need
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.0/firebase-app.js";
     // TODO: Add SDKs for Firebase products that you want to use
@@ -62,32 +65,44 @@
 
     function InsertData() {
       if (getRange() != null) {
-        var url = decodeURI(window.location.href);
-        var argsIndex = url .split("?obj=");
-        var arg = argsIndex[1];
-        document.getElementById("randomResult").innerHTML = r;
-        set(ref(db, arg+teamlist.length), {
-          ID: arg,
-          Times: r
-        })
-          // .then(() => {
-          //   alert("Data added successfully");
-          // })
-          // .catch((error) => {
-          //   alert(error);
-          // });
-
+        document.getElementById("randomResult").innerHTML="你們的關卡是:"+r;
+        document.getElementById("confirm").style.display = "inline-block";
+        document.getElementById("reroll").style.display = "inline-block";
       }
-      else {
+      else{
         if (teamlist.length ==7){
           document.getElementById("randomResult").innerHTML = "做完任務了嗎?做完了請回原點";
         }else{
           document.getElementById("randomResult").innerHTML = "請重新抽一遍";
         }
-        
       }
 
     }
+    confirmBtn.addEventListener("click", () => {
+      document.getElementById("confirm").style.display = "none";
+      document.getElementById("reroll").style.display = "none";
+    // 获取当前抽到的值
+    const currentRandomValue = r;
+
+    // 将值记录到 Firebase
+    if (currentRandomValue) {
+      const url = decodeURI(window.location.href);
+      const argsIndex = url.split("?obj=");
+      const arg = argsIndex[1];
+      teamlist+=r;
+
+      // 记录到 Firebase
+      set(ref(db, `${arg}${teamlist.length}`), {
+        ID: arg,
+        Times: parseInt(currentRandomValue)
+      })
+    } 
+  });
+
+  rerollBtn.addEventListener("click", () => {
+    // 重新抽籤的逻辑
+    InsertData();
+  });
     updateBtn.addEventListener('click', InsertData);
 
   </script>
