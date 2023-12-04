@@ -21,11 +21,15 @@
   height: 100%;
   vertical-align: middle;
 }
-.text-h-center p {
+.text-h-center  {
+  margin-top: 0;
   display: inline-block;
   line-height: 2; /* Add double line height */
   font-family: '標楷體', KaiTi, sans-serif; /* Set font-family to 標楷體 and fallback to KaiTi and sans-serif */
   font-size: 18px; /* Set font size to 18px */
+  margin-bottom: 5px;
+  color: #000000;
+  
 }
 </style>
 <script>
@@ -37,12 +41,17 @@
   }
 </script>
 
-<body>
-  <div class="section text-h-center">
-    <p style="width: 350px;font-size: medium;text-align:justify;">歡迎來到藥王沒藥了，以下是使用教學，在下面的方框裡面輸入你們的路名，確認後請按下旁邊的傳送紐，之後會進入一個畫面，那個畫面是供你們進行抽籤的，進入抽籤畫面後，請按下抽籤，如果顯示出”你們的關卡是:X”(X是你們的關卡)，之後拿給當關的關主查看有沒有跟其他組衝突到，如果沒有當關關主會叫你們按下確認紐，按下後請你們前往下一關，如果顯示出”請重新抽一遍”那就在按下抽籤，如果當關關主叫你們重新抽籤那就請按下重新抽籤，下面一樣會出現”你們的關卡是:X”或”請重新抽一遍”，接下的流程就跟上面的一樣了，但請注意這裡如果出現”請重新抽一遍”的話，要按的是重新抽籤，不是抽籤。</p><br>
+<body background="./1701694445634.jpg">
+  <div class="section text-h-center" >
+    <p style="width: 350px; font-size: medium; text-align: center;background-color: white;">歡迎來到藥王沒藥了，以下是使用教學</p>
+    <p style="width: 350px; font-size: medium; text-align: justify;text-indent: 2em;background-color: white;">在下面的方框裡面輸入你們的路名，確認後請按下旁邊的傳送紐，之後會進入一個畫面，那個畫面是供你們進行抽籤的。</p>
+    <p style="width: 350px; font-size: medium; text-align: justify;text-indent: 2em;background-color: white;">進入抽籤畫面後，請按下抽籤，如果顯示出”你們的關卡是:X”(X是你們的關卡)，之後拿給當關的關主查看有沒有跟其他組衝突到，如果沒有當關關主會叫你們按下確認紐，按下後請你們前往下一關，如果顯示出”請重新抽一遍”那就在按下抽籤，如果當關關主叫你們重新抽籤那就請按下重新抽籤，下面一樣會出現”你們的關卡是:X”或”請重新抽一遍”，接下的流程就跟上面的一樣了，但請注意這裡如果出現”請重新抽一遍”的話，要按的是重新抽籤，不是抽籤。</p>
   </div>
-  <input id="input" type="text" placeholder="請輸入你們的組別"></input>
-  <button onclick="change()">傳送</button>
+  <div>
+    <input id="input" type="text" placeholder="請輸入你們的組別"></input>
+    <button onclick="change()">傳送</button>
+  </div>
+
 </body>
 
 </html>
